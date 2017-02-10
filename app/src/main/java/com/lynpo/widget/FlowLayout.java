@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 /**
  * Created by fujw on 16-4-27.
  * <p/>
- * Copied from @Project aspirin-2016(@package cn.dxy.android.aspirin.ui.widget.FlowLayout),
  * author caoruihuan(cao_ruihuan@163.com),
  * on 2015-11-26 10:00
  */
