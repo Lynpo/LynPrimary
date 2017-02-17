@@ -32,6 +32,8 @@
 -keepattributes EnclosingMethod
 # Gson specific classes
 -keep class com.google.gson.stream.** { *; }
+# Gson converting models
+-keep class com.lynpo.model.** { *; }
 
 ##### OkHttp 3
 -keepattributes Signature
