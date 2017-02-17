@@ -6,5 +6,5 @@
 /captures
 .externalNativeBuild
 /.idea/
-/app/src/androidTest/java/com/lynpo/
-/app/src/test/java/com/lynpo/
+app/src/androidTest/
+app/src/test/
