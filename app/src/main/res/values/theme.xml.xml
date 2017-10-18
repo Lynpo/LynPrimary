@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- actionbar样式 -->
+    <style name="ActionBar.Lynpo" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="displayOptions">showHome|homeAsUp|showTitle</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <!-- app theme -->
+    <style name="Theme.Lynpo" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="actionBarStyle">@style/ActionBar.Lynpo</item>
+        <item name="android:windowBackground">@color/color_f3f3f3</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
+        <item name="android:textSize">@dimen/text_size_19</item>
+    </style>
+
+    <!-- theme no action bar-->
+    <style name="Theme.Drugs.NoActionBar" parent="Theme.Lynpo">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <!-- custom colorPrimary -->
+    <style name="Theme.Lynpo.One" parent="Theme.Lynpo">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="Theme.AppTheme.Transparent" parent="Theme.Lynpo" >
+        <item name="windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+
+    <integer name="anim_speed">500</integer>
+
+</resources>
