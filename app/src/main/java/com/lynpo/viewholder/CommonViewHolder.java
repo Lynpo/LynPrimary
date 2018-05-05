@@ -3,6 +3,8 @@ package com.lynpo.viewholder;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -12,8 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.lynpo.util.AndroidAPIUtil;
 import com.lynpo.util.GlideUtil;
@@ -111,19 +115,14 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
 
     public void loadImageUrl (final Context context, int ivId, String url) {
         ImageView iv = ((ImageView) getView(ivId));
-        Glide.with(context).load(url).listener(new RequestListener<String, GlideDrawable>() {
+        Glide.with(context).load(url).listener(new RequestListener<Drawable>() {
             @Override
-            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                Glide.clear(target);
-                return true;
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                return false;
             }
 
             @Override
-            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                if (!AndroidAPIUtil.isContextValid(context)) {
-                    Glide.clear(target);
-                    return true;
-                }
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 return false;
             }
         }).into(iv);
@@ -131,21 +130,16 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
 
     public void loadRoundImage (final Context context, int ivId, String url, String tagForTransform) {
         ImageView iv = ((ImageView) getView(ivId));
-        Glide.with(context).load(url).transform(
-                new GlideUtil.CircleTransform(
-                        iv.getContext(), tagForTransform)).listener(new RequestListener<String, GlideDrawable>() {
+        Glide.with(context).load(url)
+                .apply(RequestOptions.bitmapTransform(
+                        new GlideUtil.CircleTransform(tagForTransform))).listener(new RequestListener<Drawable>() {
             @Override
-            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                Glide.clear(target);
-                return true;
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                return false;
             }
 
             @Override
-            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                if (!AndroidAPIUtil.isContextValid(context)) {
-                    Glide.clear(target);
-                    return true;
-                }
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 return false;
             }
         }).into(iv);

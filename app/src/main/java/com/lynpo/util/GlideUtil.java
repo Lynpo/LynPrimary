@@ -7,9 +7,12 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+
+import java.security.MessageDigest;
 
 /**
  * Created by fujw on 16-1-15.
@@ -21,8 +24,7 @@ public class GlideUtil {
     public static class CircleTransform extends BitmapTransformation {
         private String mTag;
 
-        public CircleTransform(Context context, String tag) {
-            super(context);
+        public CircleTransform(String tag) {
             mTag = tag;
         }
 
@@ -31,7 +33,6 @@ public class GlideUtil {
             return circleCrop(pool, toTransform);
         }
 
-        @Override
         public String getId() {
             return mTag;
         }
@@ -59,6 +60,10 @@ public class GlideUtil {
             return result;
         }
 
+        @Override
+        public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+
+        }
     }
 
     public static class GlideRoundTransform extends BitmapTransformation {
@@ -70,7 +75,6 @@ public class GlideUtil {
         }
 
         public GlideRoundTransform(Context context, int dp) {
-            super(context);
             this.radius = Resources.getSystem().getDisplayMetrics().density * dp;
         }
 
@@ -95,7 +99,12 @@ public class GlideUtil {
             return result;
         }
 
-        @Override public String getId() {
+        public String getId() {
             return getClass().getName() + Math.round(radius);
+        }
+
+        @Override
+        public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+
         }
     }}
